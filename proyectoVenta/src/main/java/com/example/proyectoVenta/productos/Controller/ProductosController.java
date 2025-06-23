@@ -31,7 +31,7 @@ public class ProductosController {
 
     }
 
-    @GetMapping("/actualizar")
+    @PutMapping("/actualizar")
     public ResponseEntity<Object> actualizarProducto(@RequestBody Productos productos){
 
         Productos productoGuardado = productoImpl.actualizarProductos(productos);

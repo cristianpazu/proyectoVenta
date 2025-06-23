@@ -6,7 +6,6 @@ import lombok.*;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class Stock {
@@ -21,6 +20,8 @@ public class Stock {
     @JoinColumn(name = "productos_id")
     private Productos productos;
 
+    public Stock() {
+    }
 
     public Stock(Integer idStock, Integer cantidadStock, Productos productos) {
         this.idStock = idStock;

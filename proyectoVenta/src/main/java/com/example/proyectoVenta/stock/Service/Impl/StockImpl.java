@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 @Slf4j
@@ -54,15 +55,30 @@ public class StockImpl implements StockServicio {
 
         try{
 
-
-
-
             stock.setProductos( productos);
-
-
 
             return stockRepository.save(stock);
         }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    @Override
+    public Stock finByIdStock(Integer idStock) {
+        try{
+            return stockRepository.findById(idStock).orElseThrow();
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+    @Override
+    public List<Stock> findByAllStock() {
+        List<Stock> stockList = stockRepository.findAll();
+
+        try{
+            return stockList;
+        }catch (Exception e) {
             throw new RuntimeException(e);
         }
 

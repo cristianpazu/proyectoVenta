@@ -29,7 +29,7 @@ public class ProductoImpl implements productoServicio {
     public Productos registrarProductos(Productos productos) {
         /*if (productosRepository.findById(productos.getIdProductos()).isPresent()) {
             System.out.println("El producto ya registrado");
-        }*/
+        } */
 
         Set<Categoria> categoriasList = productos.getCategorias().stream()
                 .map(modulo -> categoriaRepository.findById(modulo.getIdCategoria()).orElseThrow(() -> new ResponseStatusException(
