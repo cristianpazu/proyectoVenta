@@ -29,6 +29,7 @@ public class Productos {
 
     private String observacion;
 
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "producto_categoria",
             joinColumns = @JoinColumn(
