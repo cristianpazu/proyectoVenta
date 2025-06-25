@@ -5,6 +5,7 @@ import com.example.proyectoVenta.categoria.Entity.Categoria;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,7 +26,7 @@ public class Productos {
 
     private Integer precioVenta;
 
-    private Date fechaIngreso;
+    private LocalDate fechaIngreso;
 
     private String observacion;
 
@@ -43,7 +44,7 @@ public class Productos {
     public Productos() {
     }
 
-    public Productos(Integer idProductos, String nombre, String referencia, Integer precioVenta, Date fechaIngreso, String observacion, Set<Categoria> categorias) {
+    public Productos(Integer idProductos, String nombre, String referencia, Integer precioVenta, LocalDate fechaIngreso, String observacion, Set<Categoria> categorias) {
         this.idProductos = idProductos;
         this.nombre = nombre;
         this.referencia = referencia;
@@ -85,11 +86,11 @@ public class Productos {
         this.precioVenta = precioVenta;
     }
 
-    public Date getFechaIngreso() {
+    public LocalDate getFechaIngreso() {
         return fechaIngreso;
     }
 
-    public void setFechaIngreso(Date fechaIngreso) {
+    public void setFechaIngreso(LocalDate fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
 
