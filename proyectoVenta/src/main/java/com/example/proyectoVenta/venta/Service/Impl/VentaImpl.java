@@ -67,4 +67,25 @@ public class VentaImpl implements VentaService {
 
 
     }
+
+    @Override
+    public Ventas listarVentas(Integer idVentas) {
+
+        Ventas ventas = ventaRepository.findById(idVentas)
+                .orElseThrow(() -> new RuntimeException("venta no encontrado"));
+
+        try{
+
+
+
+            return ventas;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<Ventas> listarTodasVentas() {
+        return List.of();
+    }
 }
