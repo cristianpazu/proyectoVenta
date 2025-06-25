@@ -6,7 +6,6 @@ import lombok.*;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @Entity
 public class Stock {
 

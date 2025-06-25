@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -41,8 +43,15 @@ public class ProductoImpl implements productoServicio {
         System.out.println("categoriasListZZZZZZZZZZ " + categoriasList);
 
         try{
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            Date fechaIngreso = productos.getFechaIngreso();
+            String fechaIngre = sdf.format(fechaIngreso);
+            System.out.println("fechaIngre = " + fechaIngre);
 
+            productos.setFechaIngreso(fechaIngre);
+            
 
+            System.out.println("fechaIngreso = " + fechaIngreso);
 
             productos.setCategorias(categoriasList);
 
