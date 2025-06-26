@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/export")
 public class VentaDiaExcelController {
     @Autowired
-    private VentaDiaImpl ventaDiaServicio;
+    private VentaDiaServicio ventaDiaServicio;
 
 
     @GetMapping("/excel/{fecha}")
