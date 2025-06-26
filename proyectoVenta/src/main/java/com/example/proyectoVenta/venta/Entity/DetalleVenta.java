@@ -16,9 +16,11 @@ public class DetalleVenta {
 
     @ManyToOne
     @JsonBackReference
+    @JoinColumn(name = "venta_id")
     private Ventas ventas;
 
     @ManyToOne
+    @JoinColumn(name = "producto_id")
     private Productos productos;
 
     private Integer cantidad;
