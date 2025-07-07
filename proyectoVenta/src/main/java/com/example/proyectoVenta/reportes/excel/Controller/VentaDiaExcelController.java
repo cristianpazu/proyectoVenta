@@ -25,6 +25,7 @@ import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,9 +47,49 @@ public class VentaDiaExcelController {
 
             // Convertir al DTO de Excel
             List<InformacionVentaDiaDto> usuariosExcel = ventaDia.stream()
-                    .map(obj -> new InformacionVentaDiaDto((String) obj[0],
+                    .map(obj -> {
+                            String nombre = (String) obj[0];
+                                   String fechas = obj[1].toString();
+                                Integer precioVenta = (Integer) obj[2];
+                             Integer precioCompra = (Integer) obj[3];
+                        Integer CantidadProductoVenta  = (Integer) obj[4];
+                               Integer total = (Integer) obj[5];
+
+
+                        if (precioVenta == null) precioVenta = 0;
+                        if (precioCompra == null) precioCompra = 0;
+                        int ganancias = precioVenta - precioCompra;
+                        int porcentajeGanancia = (precioCompra != 0)
+                                ? (int) ((ganancias * 100.0) / precioCompra)
+                                : 0;
+
+
+
+                        System.out.println("nombre = " + nombre);
+                        System.out.println("precioVenta = " + precioVenta);
+                        System.out.println("precioCompra = " + precioCompra);
+                        System.out.println("ganancias = " + ganancias);
+                        System.out.println("porcentajeGanancia = " + porcentajeGanancia);
+                          /*  (String) obj[0],
                              obj[1].toString(),
-                            (Integer) obj[2]))
+                            (Integer) obj[2],
+                            (Integer) obj[3],
+                            (Integer) obj[4],
+                            (Integer) obj[5],
+                            (Integer) obj[6] */
+
+
+            return new InformacionVentaDiaDto(
+                    nombre,
+                    fechas,
+                    precioVenta,
+                    precioCompra,
+                    ganancias,
+                    porcentajeGanancia,
+                    CantidadProductoVenta,
+                    total
+            );
+        })
                     .collect(Collectors.toCollection(ArrayList::new));
 
 
@@ -78,10 +119,37 @@ public class VentaDiaExcelController {
             int sumaTotal = usuariosExcel.stream()
                     .mapToInt(InformacionVentaDiaDto::getTotal)
                     .sum();
+            InformacionVentaDiaDto base = usuariosExcel.get(usuariosExcel.size() - 1);
+
+/*
+            for (Object[] fila : ventaDia) {
+                String nombreProducto = (String) fila[0];
+                Date fechaVenta = (Date) fila[1];
+                Integer total = (Integer) fila[2];
+                Integer totalV = (Integer) fila[3];
+                Integer total2 = (Integer) fila[4];
+
+                System.out.println("Producto: " + nombreProducto);
+                System.out.println("Fecha: " + fechaVenta);
+                System.out.println("Total: " + total);
+                System.out.println("totalV: " + totalV);
+                System.out.println("total2: " + total2);
+            } */
+
+
 
 // Agregar fila TOTAL
-            usuariosExcel.add(new InformacionVentaDiaDto("TOTAL", "", sumaTotal));
-
+          //  usuariosExcel.add(new InformacionVentaDiaDto("TOTAL", "", sumaTotal));
+            usuariosExcel.add(new InformacionVentaDiaDto(
+                    base.getNombre(),
+                    base.getFecha(),
+                    base.getPrecioVenta(),
+                    base.getPrecioCompra(),
+                    base.getGanancias(),
+                    base.getPorcentajeGanancia(),
+                    base.getCantidadProducto(),
+                    sumaTotal
+            ));
 
             // Escribir el Excel
             EasyExcel.write(out, InformacionVentaDiaDto.class)

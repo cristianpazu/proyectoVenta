@@ -13,10 +13,10 @@ import java.util.List;
 @Repository
 public interface VentaDiaRepository extends JpaRepository<Ventas, Integer> {
 
-@Query(value = "SELECT p.nombre, v.fecha, v.total " +
+@Query(value = "SELECT p.nombre, v.fecha, p.precio_venta, p.precio_compra,  dv.cantidad, v.total " +
         "FROM ventas v " +
-        "INNER JOIN detalle_venta dv ON v.id = dv.ventas_id " +
-        "INNER JOIN productos p ON p.id_productos = dv.productos_id_productos " +
+        "INNER JOIN detalle_venta dv ON v.id = dv.venta_id " +
+        "INNER JOIN productos p ON p.id_productos = dv.producto_id " +
         "WHERE v.fecha = CAST(:fechas AS DATE) " +
         "ORDER BY v.fecha", nativeQuery = true)
 

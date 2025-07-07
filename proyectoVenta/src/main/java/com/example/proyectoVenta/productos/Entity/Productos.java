@@ -24,6 +24,8 @@ public class Productos {
 
     private String referencia;
 
+    private Integer precioCompra;
+
     private Integer precioVenta;
 
     private LocalDate fechaIngreso;
@@ -44,10 +46,13 @@ public class Productos {
     public Productos() {
     }
 
-    public Productos(Integer idProductos, String nombre, String referencia, Integer precioVenta, LocalDate fechaIngreso, String observacion, Set<Categoria> categorias) {
+
+
+    public Productos(Integer idProductos, String nombre, String referencia, Integer precioCompra, Integer precioVenta, LocalDate fechaIngreso, String observacion, Set<Categoria> categorias) {
         this.idProductos = idProductos;
         this.nombre = nombre;
         this.referencia = referencia;
+        this.precioCompra = precioCompra;
         this.precioVenta = precioVenta;
         this.fechaIngreso = fechaIngreso;
         this.observacion = observacion;
@@ -72,6 +77,14 @@ public class Productos {
 
     public String getReferencia() {
         return referencia;
+    }
+
+    public Integer getPrecioCompra() {
+        return precioCompra;
+    }
+
+    public void setPrecioCompra(Integer precioCompra) {
+        this.precioCompra = precioCompra;
     }
 
     public void setReferencia(String referencia) {

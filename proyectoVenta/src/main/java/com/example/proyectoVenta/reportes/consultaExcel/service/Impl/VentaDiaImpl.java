@@ -21,7 +21,7 @@ public class VentaDiaImpl implements VentaDiaServicio {
     public List<Object[]> obtenerVentaDia(String fecha) {
         try{
 
-            log.info("Fecha enviada a consulta: {}", fecha);
+            //log.info("Fecha enviada a consulta: {}", fecha);
 
             System.out.println("fecha = " + fecha);
             List<Object[]> venta = ventaDiaRepository.obtenerVentaDia(fecha);
