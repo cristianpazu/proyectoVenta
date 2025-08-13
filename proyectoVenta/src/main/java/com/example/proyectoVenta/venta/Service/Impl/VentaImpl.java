@@ -86,6 +86,17 @@ public class VentaImpl implements VentaService {
 
     @Override
     public List<Ventas> listarTodasVentas() {
-        return List.of();
+
+        try{
+            List<Ventas> ventas = ventaRepository.findAll();
+            if (ventas.isEmpty()) {
+
+                throw new RuntimeException("La lista esta vacia");
+            }
+            return ventas;
+        }catch  (Exception e){
+            throw new RuntimeException(e);
+
+        }
     }
 }
