@@ -1,5 +1,6 @@
 package com.example.proyectoVenta.productos.Services;
 
+import com.example.proyectoVenta.productos.Entity.ProductoResponse;
 import com.example.proyectoVenta.productos.Entity.Productos;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public interface productoServicio {
 
     Productos findByIdProductos(Integer id);
 
-    List<Productos> findByAllProductos();
+    List<ProductoResponse> findByAllProductos();
 
 
 

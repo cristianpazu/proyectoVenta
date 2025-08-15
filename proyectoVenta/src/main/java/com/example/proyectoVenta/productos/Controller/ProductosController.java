@@ -2,6 +2,7 @@ package com.example.proyectoVenta.productos.Controller;
 
 
 import com.example.proyectoVenta.categoria.Entity.Categoria;
+import com.example.proyectoVenta.productos.Entity.ProductoResponse;
 import com.example.proyectoVenta.productos.Entity.Productos;
 import com.example.proyectoVenta.productos.Services.Impl.ProductoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,7 @@ public class ProductosController {
 
     @GetMapping("/traerporAll")
     public ResponseEntity<Object> traerProducto(){
-        List<Productos> productosFindByAll = productoImpl.findByAllProductos();
+        List<ProductoResponse> productosFindByAll = productoImpl.findByAllProductos();
         return  ResponseEntity.status(HttpStatus.OK).body(productosFindByAll);
 
     }

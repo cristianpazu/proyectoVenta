@@ -2,6 +2,7 @@ package com.example.proyectoVenta.productos.Services.Impl;
 
 import com.example.proyectoVenta.categoria.Entity.Categoria;
 import com.example.proyectoVenta.categoria.Repository.CategoriaRepository;
+import com.example.proyectoVenta.productos.Entity.ProductoResponse;
 import com.example.proyectoVenta.productos.Entity.Productos;
 import com.example.proyectoVenta.productos.Repository.ProductosRepository;
 import com.example.proyectoVenta.productos.Services.productoServicio;
@@ -116,9 +117,9 @@ public class ProductoImpl implements productoServicio {
     }
 
     @Override
-    public List<Productos> findByAllProductos() {
+    public List<ProductoResponse> findByAllProductos() {
         try{
-            List<Productos> Product = productosRepository.findAll();
+            List<ProductoResponse> Product = productosRepository.findAllByProductos();
             if (Product.isEmpty()) {
 
                 throw new RuntimeException("La lista esta vacia");
