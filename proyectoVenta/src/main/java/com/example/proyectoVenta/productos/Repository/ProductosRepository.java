@@ -11,9 +11,21 @@ import java.util.List;
 @Repository
 public interface ProductosRepository extends JpaRepository<Productos, Integer> {
 
-    @Query(value = "SELECT pr.nombre, pr.fecha_ingreso FROM productos  pr " +
-            "INNER JOIN producto_categoria pc on pr.id_productos = pc.producto_id " +
-            "LEFT JOIN stock s on pr.id_productos = s.productos_id", nativeQuery = true)
+    @Query(value = """
+    SELECT 
+        p.nombre,
+        p.referencia,
+        p.precio_venta,
+        p.fecha_ingreso,
+        s.cantidad_stock,
+        p.observacion,
+        STRING_AGG(c.nombre_categoria, ',') AS categoriasConcat
+    FROM productos p
+    LEFT JOIN stock s ON p.id_productos = s.productos_id
+    LEFT JOIN producto_categoria pc ON pc.producto_id = p.id_productos
+    LEFT JOIN categoria c ON c.id_categoria = pc.categoria_id
+    GROUP BY p.id_productos, s.cantidad_stock
+    """, nativeQuery = true)
     List<ProductoResponse> findAllByProductos();
 
 }

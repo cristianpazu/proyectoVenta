@@ -1,10 +1,11 @@
 package com.example.proyectoVenta.categoria.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.example.proyectoVenta.productos.Entity.Productos;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -16,6 +17,9 @@ public class Categoria {
 
 
     String nombreCategoria;
+
+    @ManyToMany(mappedBy = "categorias")
+    private Set<Productos> productos = new HashSet<>();
 
     public Categoria() {
     }

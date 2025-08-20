@@ -12,10 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -120,6 +118,20 @@ public class ProductoImpl implements productoServicio {
     public List<ProductoResponse> findByAllProductos() {
         try{
             List<ProductoResponse> Product = productosRepository.findAllByProductos();
+/*
+            List<ProductoResponse> result = Product.stream()
+
+                    .map(tuple -> new ProductoResponse(
+                            tuple.get(0, String.class),
+                            tuple.get(1, String.class),
+                            tuple.get(2, Integer.class),
+                            tuple.get(3, LocalDate.class),
+                            tuple.get(4, Integer.class),
+                            tuple.get(5, String.class)
+
+                    )).collect(Collectors.toList()); */
+
+
             if (Product.isEmpty()) {
 
                 throw new RuntimeException("La lista esta vacia");
