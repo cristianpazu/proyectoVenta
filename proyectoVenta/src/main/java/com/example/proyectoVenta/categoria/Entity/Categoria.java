@@ -1,6 +1,7 @@
 package com.example.proyectoVenta.categoria.Entity;
 
 import com.example.proyectoVenta.productos.Entity.Productos;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,6 +20,7 @@ public class Categoria {
     String nombreCategoria;
 
     @ManyToMany(mappedBy = "categorias")
+    @JsonIgnore
     private Set<Productos> productos = new HashSet<>();
 
     public Categoria() {
