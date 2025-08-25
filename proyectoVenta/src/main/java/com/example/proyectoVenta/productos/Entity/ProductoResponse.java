@@ -6,6 +6,7 @@ import java.util.List;
 
 public class ProductoResponse {
 
+    private Integer idProductos;
     private String nombre;
     private String referencia;
     private Integer precioventa;
@@ -14,7 +15,8 @@ public class ProductoResponse {
     private String observacion;
     private String categoriasConcat;
 
-    public ProductoResponse(String nombre, String referencia, Integer precioventa, Date  fechaIngreso, Integer cantidadStock, String observacion, String categoriasConcat) {
+    public ProductoResponse(Integer idProductos,String nombre, String referencia, Integer precioventa, Date  fechaIngreso, Integer cantidadStock, String observacion, String categoriasConcat) {
+        this.idProductos = idProductos;
         this.nombre = nombre;
         this.referencia = referencia;
         this.precioventa = precioventa;
@@ -22,6 +24,14 @@ public class ProductoResponse {
         this.cantidadStock = cantidadStock;
         this.observacion = observacion;
         this.categoriasConcat = categoriasConcat;
+    }
+
+    public Integer getIdProductos() {
+        return idProductos;
+    }
+
+    public void setIdProductos(Integer idProductos) {
+        this.idProductos = idProductos;
     }
 
     public String getNombre() {
