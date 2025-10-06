@@ -15,7 +15,7 @@ public class Stock {
 
     Integer cantidadStock;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "productos_id")
     private Productos productos;
 

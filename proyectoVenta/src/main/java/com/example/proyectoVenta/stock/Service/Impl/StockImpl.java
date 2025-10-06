@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 @Slf4j
@@ -30,7 +31,13 @@ public class StockImpl implements StockServicio {
                 HttpStatus.NOT_FOUND,
                 "Categoría no encontrada con ID: " ));
 
-
+        Optional<Stock> stockExistente = stockRepository.findByProductos_IdProductos(productos.getIdProductos());
+        if (stockExistente.isPresent()) {
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT,
+                    "Ya existe un stock registrado para el producto con ID: " + productos.getIdProductos()
+            );
+        }
         try{
 
 
@@ -48,6 +55,11 @@ public class StockImpl implements StockServicio {
 
     @Override
     public Stock actualizarStock(Stock stock) {
+
+        System.out.println("stock.getCantidadStock() = " + stock.getCantidadStock());
+
+        System.out.println("stock.getProductos().getIdProductos = " + stock.getProductos().getIdProductos());
+        
         Productos productos = productosRepository.findById(stock.getProductos().getIdProductos()).orElseThrow(() -> new ResponseStatusException(
                 HttpStatus.NOT_FOUND,
                 "Categoría no encontrada con ID: " ));

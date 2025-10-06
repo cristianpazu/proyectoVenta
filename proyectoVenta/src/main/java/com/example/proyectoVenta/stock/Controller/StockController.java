@@ -18,7 +18,7 @@ public class StockController {
     @Autowired
     private StockImpl stockImpl;
 
-    @PostMapping("/registrarProductos")
+    @PostMapping("/registrarStock")
     public ResponseEntity<Object> registrarStock(@RequestBody Stock stock) {
 
         Stock stockGuardado = stockImpl.registrarStockProducto(stock);
