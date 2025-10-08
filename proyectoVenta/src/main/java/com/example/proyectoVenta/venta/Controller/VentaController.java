@@ -1,5 +1,6 @@
 package com.example.proyectoVenta.venta.Controller;
 
+import com.example.proyectoVenta.productos.Entity.Productos;
 import com.example.proyectoVenta.venta.Entity.Ventas;
 import com.example.proyectoVenta.venta.Service.Impl.VentaImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,9 @@ public class VentaController {
     @Autowired
     private VentaImpl ventaImpl;
 
-    @PostMapping("/registrarVenta/{productoId}/{cantidad}")
-    public ResponseEntity<Object> registrarVenta(@PathVariable Integer productoId,
-                                                 @PathVariable Integer cantidad) {
-       Ventas vs =  ventaImpl.registrarVentas(productoId, cantidad);
+    @PostMapping("/registrarVenta")
+    public ResponseEntity<Object> registrarVenta(@RequestBody Ventas ventas) {
+       Ventas vs =  ventaImpl.registrarVentas(ventas);
         return ResponseEntity.status(HttpStatus.OK).body(vs);
     }
 

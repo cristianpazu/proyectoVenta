@@ -30,6 +30,8 @@ public class Productos {
 
     private LocalDate fechaIngreso;
 
+    private Integer cantidad;
+
     private String observacion;
 
 
@@ -48,17 +50,18 @@ public class Productos {
 
 
 
-    public Productos(Integer idProductos, String nombre, String referencia, Integer precioCompra, Integer precioVenta, LocalDate fechaIngreso, String observacion, Set<Categoria> categorias) {
+
+    public Productos(Integer idProductos, String nombre, String referencia, Integer precioCompra, Integer precioVenta, LocalDate fechaIngreso,Integer cantidad ,String observacion, Set<Categoria> categorias) {
         this.idProductos = idProductos;
         this.nombre = nombre;
         this.referencia = referencia;
         this.precioCompra = precioCompra;
         this.precioVenta = precioVenta;
         this.fechaIngreso = fechaIngreso;
+        this.cantidad = cantidad;
         this.observacion = observacion;
         this.categorias = categorias;
     }
-
     public Integer getIdProductos() {
         return idProductos;
     }
@@ -107,6 +110,14 @@ public class Productos {
         this.fechaIngreso = fechaIngreso;
     }
 
+
+ public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+    }
     public String getObservacion() {
         return observacion;
     }
